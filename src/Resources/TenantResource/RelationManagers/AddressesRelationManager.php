@@ -42,7 +42,6 @@ class AddressesRelationManager extends RelationManager
                             ->columns(),
                     ])->columnSpan(['lg' => 2]),
 
-
             ])->columns();
     }
 
