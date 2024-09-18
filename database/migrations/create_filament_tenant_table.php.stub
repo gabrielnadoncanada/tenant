@@ -15,10 +15,13 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
-       Schema::create(config('filament-tenant.table_relation_name', 'tenant_user'), function (Blueprint $table) {
+       Schema::create(config('filament-tenant.relation_table_name', 'tenant_user'), function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('organization_id')->nullable()->constrained()->onDelete('cascade');
+            $table->foreignId(config('filament-tenant.relation_foreign_key', 'tenant_id'))
+            ->nullable()
+            ->constrained()
+            ->onDelete('cascade');
             $table->timestamps();
         });
     }

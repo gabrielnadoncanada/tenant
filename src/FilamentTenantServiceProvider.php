@@ -150,7 +150,7 @@ class FilamentTenantServiceProvider extends PackageServiceProvider
     protected function getMigrations(): array
     {
         return [
-            'create_filament-tenant_table',
+            'create_filament_tenant_table',
         ];
     }
 }

@@ -1,9 +1,8 @@
 <?php
 
-// config for Devlense/FilamentTenant
 return [
     'table_name' => 'tenants',
-    'table_relation_name' => 'tenant_user',
+    'relation_table_name' => 'tenant_user',
+    'relation_foreign_key' => 'tenant_id',
     'model' => Devlense\FilamentTenant\Models\Tenant::class,
-
 ];
