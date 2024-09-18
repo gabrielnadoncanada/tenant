@@ -15,7 +15,7 @@ class FilamentTenantPlugin implements Plugin
     public function register(Panel $panel): void
     {
         $panel->resources([
-            Resources\TenantResource::class,
+            Devlense\FilamentTenant\Resources\TenantResource::class,
         ]);
     }
 
