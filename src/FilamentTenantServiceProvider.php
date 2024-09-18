@@ -105,8 +105,8 @@ class FilamentTenantServiceProvider extends PackageServiceProvider
     {
         return [
             // AlpineComponent::make('filament-tenant', __DIR__ . '/../resources/dist/components/filament-tenant.js'),
-//            Css::make('filament-tenant-styles', __DIR__ . '/../resources/dist/filament-tenant.css'),
-//            Js::make('filament-tenant-scripts', __DIR__ . '/../resources/dist/filament-tenant.js'),
+            //            Css::make('filament-tenant-styles', __DIR__ . '/../resources/dist/filament-tenant.css'),
+            //            Js::make('filament-tenant-scripts', __DIR__ . '/../resources/dist/filament-tenant.js'),
         ];
     }
 
