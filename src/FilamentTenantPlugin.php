@@ -2,6 +2,7 @@
 
 namespace Devlense\FilamentTenant;
 
+use Devlense\FilamentTenant\Resources\TenantResource;
 use Filament\Contracts\Plugin;
 use Filament\Panel;
 
@@ -15,7 +16,7 @@ class FilamentTenantPlugin implements Plugin
     public function register(Panel $panel): void
     {
         $panel->resources([
-            Devlense\FilamentTenant\Resources\TenantResource::class,
+            TenantResource::class,
         ]);
     }
 
