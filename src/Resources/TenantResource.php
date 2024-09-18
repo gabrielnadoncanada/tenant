@@ -2,11 +2,10 @@
 
 namespace Devlense\FilamentTenant\Resources;
 
-use App\Filament\Actions\SoftDeleteBulkAction;
-use App\Filament\Resources;
-use App\Filament\Resources\TenantResource\Pages;
-use App\Filament\Tables\Actions\SoftDeleteAction;
 use Devlense\FilamentTenant\Models\Tenant;
+use Devlense\FilamentTenant\Resources\TenantResource\Pages\CreateTenant;
+use Devlense\FilamentTenant\Resources\TenantResource\Pages\EditTenant;
+use Devlense\FilamentTenant\Resources\TenantResource\Pages\ListTenants;
 use Filament\Forms;
 use Filament\Forms\Components\Section;
 use Filament\Tables;
@@ -15,8 +14,10 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Facades\Auth;
+use Filament\Resources\Resource;
 
-class TenantResource extends Resources
+
+class TenantResource extends Resource
 {
     protected static ?string $model = Tenant::class;
 
@@ -53,12 +54,6 @@ class TenantResource extends Resources
                 Tables\Columns\TextColumn::make(Tenant::TITLE)
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make(Tenant::CURRENCY)
-                    ->searchable()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make(Tenant::MEASUREMENT_SYSTEM)
-                    ->searchable()
-                    ->sortable(),
                 Tables\Columns\TextColumn::make(Tenant::EMAIL)
                     ->searchable()
                     ->sortable(),
@@ -78,19 +73,12 @@ class TenantResource extends Resources
                 ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\RestoreAction::make(),
-                SoftDeleteAction::make(),
                 Tables\Actions\ForceDeleteAction::make(),
             ])
             ->bulkActions([
-                SoftDeleteBulkAction::make(),
                 Tables\Actions\ForceDeleteBulkAction::make(),
                 Tables\Actions\RestoreBulkAction::make(),
             ]);
-    }
-
-    public static function getNavigationGroup(): ?string
-    {
-        return __('filament.navigation.group.administration');
     }
 
     public static function getRelations(): array
@@ -102,26 +90,9 @@ class TenantResource extends Resources
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListTenants::route('/'),
-            'create' => Pages\CreateTenant::route('/create'),
-            'edit' => Pages\EditTenant::route('/{record}/edit'),
+            'index' => ListTenants::route('/'),
+            'create' => CreateTenant::route('/create'),
+            'edit' => EditTenant::route('/{record}/edit'),
         ];
-    }
-
-    public static function getEloquentQuery(): Builder
-    {
-        $user = Auth::user();
-
-        return parent::getEloquentQuery()
-            ->when(
-                $user->hasRole('Super Administrateur'),
-                fn ($query) => $query->withoutGlobalScopes([
-                    SoftDeletingScope::class,
-                ]),
-                fn ($query) => $query
-                    ->join('Tenant_user', 'tenants.id', '=', 'tenant_user.tenant_id')
-                    ->where('tenant_user.user_id', $user->id)
-                    ->select('tenants.*')
-            );
     }
 }

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Filament\Resources\TenantResource\Pages;
+namespace Devlense\FilamentTenant\Resources\TenantResource\Pages;
 
-use App\Filament\Resources\TenantResource;
+use Devlense\FilamentTenant\Resources\TenantResource;
 use Filament\Resources\Pages\CreateRecord;
 
 class CreateTenant extends CreateRecord
