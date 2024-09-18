@@ -1,6 +1,6 @@
 <?php
 
-namespace VendorName\Skeleton;
+namespace Devlense\FilamentTenant;
 
 use Filament\Support\Assets\AlpineComponent;
 use Filament\Support\Assets\Asset;
@@ -13,14 +13,14 @@ use Livewire\Features\SupportTesting\Testable;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use VendorName\Skeleton\Commands\SkeletonCommand;
-use VendorName\Skeleton\Testing\TestsSkeleton;
+use Devlense\FilamentTenant\Commands\FilamentTenantCommand;
+use Devlense\FilamentTenant\Testing\TestsFilamentTenant;
 
-class SkeletonServiceProvider extends PackageServiceProvider
+class FilamentTenantServiceProvider extends PackageServiceProvider
 {
-    public static string $name = 'skeleton';
+    public static string $name = 'filament-tenant';
 
-    public static string $viewNamespace = 'skeleton';
+    public static string $viewNamespace = 'filament-tenant';
 
     public function configurePackage(Package $package): void
     {
@@ -31,12 +31,16 @@ class SkeletonServiceProvider extends PackageServiceProvider
          */
         $package->name(static::$name)
             ->hasCommands($this->getCommands())
+            ->hasConfigFile()
+            ->hasMigrations($this->getMigrations())
+            ->hasTranslations()
+            ->hasViews()
             ->hasInstallCommand(function (InstallCommand $command) {
                 $command
                     ->publishConfigFile()
                     ->publishMigrations()
                     ->askToRunMigrations()
-                    ->askToStarRepoOnGitHub(':vendor_slug/:package_slug');
+                    ->askToStarRepoOnGitHub('devlense/filament-tenant');
             });
 
         $configFileName = $package->shortName();
@@ -80,18 +84,18 @@ class SkeletonServiceProvider extends PackageServiceProvider
         if (app()->runningInConsole()) {
             foreach (app(Filesystem::class)->files(__DIR__ . '/../stubs/') as $file) {
                 $this->publishes([
-                    $file->getRealPath() => base_path("stubs/skeleton/{$file->getFilename()}"),
-                ], 'skeleton-stubs');
+                    $file->getRealPath() => base_path("stubs/filament-tenant/{$file->getFilename()}"),
+                ], 'filament-tenant-stubs');
             }
         }
 
         // Testing
-        Testable::mixin(new TestsSkeleton);
+        Testable::mixin(new TestsFilamentTenant);
     }
 
     protected function getAssetPackageName(): ?string
     {
-        return ':vendor_slug/:package_slug';
+        return 'devlense/filament-tenant';
     }
 
     /**
@@ -100,9 +104,9 @@ class SkeletonServiceProvider extends PackageServiceProvider
     protected function getAssets(): array
     {
         return [
-            // AlpineComponent::make('skeleton', __DIR__ . '/../resources/dist/components/skeleton.js'),
-            Css::make('skeleton-styles', __DIR__ . '/../resources/dist/skeleton.css'),
-            Js::make('skeleton-scripts', __DIR__ . '/../resources/dist/skeleton.js'),
+            // AlpineComponent::make('filament-tenant', __DIR__ . '/../resources/dist/components/filament-tenant.js'),
+            Css::make('filament-tenant-styles', __DIR__ . '/../resources/dist/filament-tenant.css'),
+            Js::make('filament-tenant-scripts', __DIR__ . '/../resources/dist/filament-tenant.js'),
         ];
     }
 
@@ -112,7 +116,7 @@ class SkeletonServiceProvider extends PackageServiceProvider
     protected function getCommands(): array
     {
         return [
-            SkeletonCommand::class,
+            FilamentTenantCommand::class,
         ];
     }
 
@@ -146,7 +150,7 @@ class SkeletonServiceProvider extends PackageServiceProvider
     protected function getMigrations(): array
     {
         return [
-            'create_skeleton_table',
+            'create_filament-tenant_table',
         ];
     }
 }
