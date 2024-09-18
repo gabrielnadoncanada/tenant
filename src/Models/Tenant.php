@@ -17,10 +17,6 @@ class Tenant extends Model implements HasName
 
     public const TITLE = 'title';
 
-    public const CURRENCY = 'currency';
-
-    public const MEASUREMENT_SYSTEM = 'measurement_system';
-
     public const EMAIL = 'email';
 
     public const CREATED_AT = 'created_at';
