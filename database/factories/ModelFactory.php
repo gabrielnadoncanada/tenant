@@ -2,10 +2,8 @@
 
 namespace Devlense\FilamentTenant\Database\Factories;
 
-use App\Enums\Currency;
-use App\Enums\MeasurementSystem;
-use Devlense\FilamentTenant\Models\Tenant;
 use Bezhanov\Faker\ProviderCollectionHelper;
+use Devlense\FilamentTenant\Models\Tenant;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class TenantFactory extends Factory

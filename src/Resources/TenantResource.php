@@ -2,11 +2,10 @@
 
 namespace Devlense\FilamentTenant\Resources;
 
-use App\Filament\Resources;
 use App\Filament\Actions\SoftDeleteBulkAction;
+use App\Filament\Resources;
 use App\Filament\Resources\TenantResource\Pages;
 use App\Filament\Tables\Actions\SoftDeleteAction;
-
 use Devlense\FilamentTenant\Models\Tenant;
 use Filament\Forms;
 use Filament\Forms\Components\Section;
