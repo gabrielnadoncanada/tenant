@@ -2,7 +2,9 @@
 
 namespace Devlense\FilamentTenant\Concerns;
 
+use Devlense\FilamentTenant\FilamentTenant;
 use Filament\Facades\Filament;
+use Illuminate\Database\Schema\Builder;
 
 trait Multitenancy
 {
@@ -11,14 +13,14 @@ trait Multitenancy
         static::creating(function ($model) {
             $tenant = Filament::getTenant();
 
-            if (is_null($model->{static::getTenantForeignKey()}) && $tenant !== null) {
-                $model->{static::getTenantForeignKey()} = $tenant->id;
+            if (is_null($model->{FilamentTenant::getTenantForeignKey()}) && $tenant !== null) {
+                $model->{FilamentTenant::getTenantForeignKey()} = $tenant->id;
             }
         });
 
         if (Filament::getTenant() != null) {
             static::addGlobalScope('by_tenant', function (Builder $builder) {
-                $builder->where(static::getTenantForeignKey(), Filament::getTenant()->id);
+                $builder->where(FilamentTenant::getTenantForeignKey(), Filament::getTenant()->id);
             });
         }
     }
