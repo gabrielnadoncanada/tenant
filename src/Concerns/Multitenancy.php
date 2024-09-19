@@ -6,8 +6,6 @@ use Filament\Facades\Filament;
 
 trait Multitenancy
 {
-
-
     protected static function bootHasMultiTenancy()
     {
         static::creating(function ($model) {
@@ -17,7 +15,6 @@ trait Multitenancy
                 $model->{static::getTenantForeignKey()} = $tenant->id;
             }
         });
-
 
         if (Filament::getTenant() != null) {
             static::addGlobalScope('by_tenant', function (Builder $builder) {
