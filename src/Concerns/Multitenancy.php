@@ -11,6 +11,7 @@ trait Multitenancy
     protected static function bootHasMultiTenancy()
     {
         static::creating(function ($model) {
+            dd('1');
             $tenant = Filament::getTenant();
 
             if (is_null($model->{static::getTenantForeignKey()}) && $tenant !== null) {
