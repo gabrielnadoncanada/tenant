@@ -2,7 +2,8 @@
 
 namespace Devlense\FilamentTenant;
 
-class FilamentTenant {
+class FilamentTenant
+{
     public static function getTenantModelClass()
     {
         return config('filament-tenant.model', 'model');
