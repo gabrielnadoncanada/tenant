@@ -4,7 +4,7 @@ namespace Devlense\FilamentTenant\Concerns;
 
 use Devlense\FilamentTenant\FilamentTenant;
 use Filament\Facades\Filament;
-use Illuminate\Database\Schema\Builder;
+use Illuminate\Database\Eloquent\Builder;
 
 trait Multitenancy
 {
