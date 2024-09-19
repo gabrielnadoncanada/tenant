@@ -6,10 +6,9 @@ use Filament\Facades\Filament;
 
 trait Multitenancy
 {
-    protected static function bootHasMultiTenancy()
+    protected static function bootMultiTenancy()
     {
         static::creating(function ($model) {
-            dd('1');
             $tenant = Filament::getTenant();
 
             if (is_null($model->{static::getTenantForeignKey()}) && $tenant !== null) {
