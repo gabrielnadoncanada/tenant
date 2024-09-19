@@ -12,4 +12,5 @@ class FilamentTenant {
     {
         return config('filament-tenant.relation_foreign_key');
     }
+
 }
