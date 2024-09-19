@@ -4,7 +4,7 @@ namespace Devlense\FilamentTenant\Concerns;
 
 use Filament\Facades\Filament;
 
-trait HasTenancy
+trait HasTenant
 {
     /**
      * Get the column name that references the tenant in the model.
