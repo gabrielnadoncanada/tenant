@@ -21,7 +21,7 @@ trait HasTenant
      */
     protected static function getTenantModelClass()
     {
-        return config('filament-tenant.relation_table_name', 'model');
+        return config('filament-tenant.model', 'model');
     }
 
     public function tenant(): BelongsTo
