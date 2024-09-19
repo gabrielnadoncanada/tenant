@@ -8,8 +8,6 @@ trait HasTenant
 {
     /**
      * Get the column name that references the tenant in the model.
-     *
-     * @return string
      */
     protected static function getTenantForeignKey(): string
     {
@@ -26,7 +24,6 @@ trait HasTenant
         return config('filament-tenant.relation_table_name', 'model');
     }
 
-
     public function tenant(): BelongsTo
     {
         return $this->belongsTo(static::getTenantModelClass(), static::getTenantForeignKey());
@@ -34,8 +31,6 @@ trait HasTenant
 
     /**
      * Get the current tenant instance from Filament.
-     *
-     * @return mixed
      */
     protected static function getCurrentTenant(): mixed
     {
