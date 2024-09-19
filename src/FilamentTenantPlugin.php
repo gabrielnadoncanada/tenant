@@ -17,7 +17,7 @@ class FilamentTenantPlugin implements Plugin
     {
         $panel->resources([
             TenantResource::class,
-        ]);
+        ])->tenant(FilamentTenant::getTenantModelClass());
     }
 
     public function boot(Panel $panel): void
