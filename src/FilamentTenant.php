@@ -2,8 +2,8 @@
 
 namespace Devlense\FilamentTenant;
 
-class FilamentTenant {
-
+class FilamentTenant
+{
     /**
      * Get the column name that references the tenant in the model.
      */

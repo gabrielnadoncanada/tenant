@@ -3,7 +3,6 @@
 namespace Devlense\FilamentTenant\Concerns;
 
 use Filament\Facades\Filament;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 trait HasTenant
 {
